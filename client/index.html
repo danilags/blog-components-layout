@@ -19,35 +19,54 @@
       <!-- <component :is="currentView"></component> -->
       <home v-if="currentView=='home'"></home>
       <post v-if="currentView=='post'" :postingan="posts"></post>
+
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+          <content-awal :postinganawal="data1" ></content-awal>
+        </div>
+        <div class="col-md-2">
+          <nav-kanan :postingan="posts" @ubah-nav="setData1"></nav-kanan>
+        </div>
+
+      </div>
     </div>
 
+    <template id="left-content">
+      <!-- <div class="row"> -->
+        <div class="content">
+          <div class="isi-content">
+            <img :src="postinganawal.image" alt="">
+          </div>
+          <div class="image-content">
+            <h2>{{ postinganawal.title}}</h2>
+            <p>{{ postinganawal.content}}</p>
+            <span>category : <a href="#">{{ postinganawal.category}}</a></span>
+          </div>
+       </div>
+     </duv>
+    <!-- </div> -->
+    </template>
+
+    <!-- parentnya nav kanan -->
+    <template id="custom-nav">
+      <div class="right-nav">
+        <ul>
+          <li v-for="post in postingan">
+            <a @click="ubahNav(post)">{{ post.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </template>
+
     <template id="home-template">
-      <section id="content-besar">
-        <div class="content-wrapp container-fluid">
-          <div class="row">
-            <content-left></content-left>
-            <content-center></content-center>
-            <content-right></content-right>
-          </div>
-        </div>
-      </section>
-      <section id="footer" class="footer">
-        <div class="container">
-          <div class="row">
-            <footer-left></footer-left>
-            <footer-center-satu></footer-center-satu>
-            <footer-center-satu></footer-center-satu>
-            <footer-right></footer-right>
-          </div>
-        </div>
-      </section>
+      <h1>Ini tadinya home</h1>
     </template>
 
     <template id="list-post">
       <div>
         <h1>Component Post</h1>
         <ul>
-
           <!-- {{ posts }} -->
           <li v-for="post in postingan">
             <div class="content col-md-8">
@@ -62,13 +81,6 @@
         </ul>
       </div>
     </template>
-
-
-
-
-
-
-
 
   </body>
   <script type="text/javascript" src="js/script.js"></script>
