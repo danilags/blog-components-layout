@@ -10,13 +10,13 @@ const express = require('express'),
       //All Route Files
       routes = require('./routes/index'),
       article = require('./routes/apiArticle'),
+      cors = require('cors'),
 
       //Express Instance
       app = express();
-
 //load environment variables with dotenv
-require('dotenv').config()
-
+// require('dotenv').config()
+app.use(cors())
 //Database connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/blog', (err) => {

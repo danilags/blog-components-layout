@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://unpkg.com/vue@2.2.6"></script>
+    <script src="https://unpkg.com/vue-router@2.4.0/dist/vue-router.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css.map">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>SPA Blog Component</title>
+  </head>
+  <body>
+    <div id="myapp">
+      <section id="nav">
+          <navigasi-awak @change-view="setCurrentView"></navigasi-awak>
+      </section>
+
+      <!-- <component :is="currentView"></component> -->
+      <home v-if="currentView=='home'"></home>
+      <post v-if="currentView=='post'" :postingan="posts"></post>
+    </div>
+
+    <template id="home-template">
+      <section id="content-besar">
+        <div class="content-wrapp container-fluid">
+          <div class="row">
+            <content-left></content-left>
+            <content-center></content-center>
+            <content-right></content-right>
+          </div>
+        </div>
+      </section>
+      <section id="footer" class="footer">
+        <div class="container">
+          <div class="row">
+            <footer-left></footer-left>
+            <footer-center-satu></footer-center-satu>
+            <footer-center-satu></footer-center-satu>
+            <footer-right></footer-right>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <template id="list-post">
+      <div>
+        <h1>Component Post</h1>
+        <ul>
+
+          <!-- {{ posts }} -->
+          <li v-for="post in postingan">
+            <div class="content col-md-8">
+              <h4>{{ post.title }}</h4>
+              <p>{{ post.content }}</p>
+              <span>category : <a href="#">{{ post.category }}</a></span>
+            </div>
+            <div class="image col-md-4">
+              <img :src="post.image" alt="">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+
+
+
+
+
+
+
+  </body>
+  <script type="text/javascript" src="js/script.js"></script>
+</html>
